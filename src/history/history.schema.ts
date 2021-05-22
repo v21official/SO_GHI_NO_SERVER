@@ -1,19 +1,33 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { Data } from 'ws';
 
 export type HistoryDocument = History & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class History {
     @Prop({ required: true })
-    alias: string;
+    username: string;
 
     @Prop({ required: true })
-    accessIP: string;
+    partner: string;
 
     @Prop({ required: true })
-    accessTime: Date;
+    money: number;
+
+    // @Prop({ required: true })
+    // payDate: Date;
+
+    @Prop()
+    note: string;
+
+    @Prop({ required: true })
+    type: string;
+
+    @Prop({ default: false })
+    completed: boolean;
+
+    @Prop({ default: true })
+    isActive: boolean;
 }
 
 export const HistorySchema = SchemaFactory.createForClass(History);

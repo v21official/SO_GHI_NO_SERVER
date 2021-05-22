@@ -23,9 +23,9 @@ export class LinkController {
         return await this.linkService.delete(req, alias);
     }
 
-    @Get('accessCountLinkByAlias')
-    async accessCountLinkByAlias(@Query('alias') alias: string) {
-        return await this.linkService.accessCountLinkByAlias(alias);
-    }
+    // @Get('accessCountLinkByAlias')
+    // async accessCountLinkByAlias(@Query('alias') alias: string) {
+    //     return await this.linkService.accessCountLinkByAlias(alias);
+    // }
 }
 

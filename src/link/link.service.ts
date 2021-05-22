@@ -2,14 +2,12 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Link, LinkDocument } from './schema/link.schema';
-import { History, HistoryDocument } from './schema/history.schema';
 import { CreateLinkDto } from './link.dto';
 
 @Injectable()
 export class LinkService {
   constructor(
     @InjectModel(Link.name) private readonly linkModel: Model<LinkDocument>,
-    @InjectModel(History.name) private readonly historyModel: Model<HistoryDocument>,
   ) {}
 
   async create(req: any, createLinkDto: CreateLinkDto): Promise<any> {
@@ -73,19 +71,19 @@ export class LinkService {
     );
   }
 
-  async redirect(alias: string, ip: string): Promise<any> {
-    const findLink = await this.linkModel.findOne({ alias, isActive: false });
-    if (!findLink) return 'https://inet.vn/not-found';
-    const createdHistory = new this.historyModel({
-      accessIP: ip,
-      alias,
-      accessTime: Date.now(),
-    });
-    await createdHistory.save();
-    return findLink.original;
-  }
-
-  async accessCountLinkByAlias(alias: string): Promise<number> {
-    return await this.historyModel.countDocuments({ alias });
-  }
+  // async redirect(alias: string, ip: string): Promise<any> {
+  //   const findLink = await this.linkModel.findOne({ alias, isActive: false });
+  //   if (!findLink) return 'https://inet.vn/not-found';
+  //   const createdHistory = new this.historyModel({
+  //     accessIP: ip,
+  //     alias,
+  //     accessTime: Date.now(),
+  //   });
+  //   await createdHistory.save();
+  //   return findLink.original;
+  // }
+  //
+  // async accessCountLinkByAlias(alias: string): Promise<number> {
+  //   return await this.historyModel.countDocuments({ alias });
+  // }
 }

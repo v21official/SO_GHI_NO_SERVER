@@ -18,14 +18,14 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Public()
-  @Get(':alias')
-  @Redirect()
-  async getAlias(@Param('alias') alias: string, @Ip() ip: any) {
-    const redirectLink = await this.linkService.redirect(alias, ip);
-    return {
-      "url": redirectLink,
-      "statusCode": 307
-    }
-  }
+  // @Public()
+  // @Get(':alias')
+  // @Redirect()
+  // async getAlias(@Param('alias') alias: string, @Ip() ip: any) {
+  //   const redirectLink = await this.linkService.redirect(alias, ip);
+  //   return {
+  //     "url": redirectLink,
+  //     "statusCode": 307
+  //   }
+  // }
 }
