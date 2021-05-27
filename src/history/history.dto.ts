@@ -32,20 +32,21 @@ export class UpdateHistoryDto {
     @IsNotEmpty()
     readonly _id: string;
 
-    @IsString()
-    @IsNotEmpty()
-    readonly partner: string;
-
-    @IsString()
-    @IsNotEmpty()
-    readonly type: string;
-
-    @IsInt()
-    @IsNotEmpty()
-    readonly money: number;
-
+    // @IsString()
     // @IsNotEmpty()
-    // readonly payDate: Date;
+    // readonly partner: string;
+    //
+    // @IsString()
+    // @IsNotEmpty()
+    // readonly type: string;
+    //
+    // @IsInt()
+    // @IsNotEmpty()
+    // readonly money: number;
+
+    readonly completed: boolean;
+
+    readonly isActive: boolean;
 
     readonly note: string;
 }

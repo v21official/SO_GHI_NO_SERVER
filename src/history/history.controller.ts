@@ -8,12 +8,12 @@ export class HistoryController {
 
     @Post()
     async create(@Request() req, @Body() dto: CreateHistoryDto) {
-        console.log('username', req.user.username);
         return await this.historyService.create(req.user.username, dto);
     }
 
     @Post('getList')
     async getList(@Request() req, @Body() dto: GetListHistoryDto) {
+        console.log('user', req.user);
         return await this.historyService.getList(req.user.username, dto);
     }
 
@@ -22,7 +22,7 @@ export class HistoryController {
         return await this.historyService.getTotal(req.user.username, dto);
     }
 
-    @Put()
+    @Post('update')
     async update(@Request() req, @Body() dto: UpdateHistoryDto) {
         return await this.historyService.update(req.user.username, dto);
     }

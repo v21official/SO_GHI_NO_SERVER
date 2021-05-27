@@ -30,6 +30,7 @@ export class HistoryService {
         const filters: any = {
             type: dto.type,
             username,
+            isActive: true,
         };
         const data = await this.historyModel.find(filters).exec();
         return data;
@@ -39,21 +40,23 @@ export class HistoryService {
         const filters: any = {
             type: dto.type,
             completed: false,
+            isActive: true,
             username,
         };
         const data = await this.historyModel.find(filters).exec();
         return data.reduce((sum, element) => sum + element.money, 0);
     }
 
-    async update(username: string, dto: UpdateHistoryDto): Promise<History> {
-        const created = new this.historyModel({
-            username,
-            partner: dto.partner,
-            money: dto.money,
-            // payDate: dto.payDate,
-            type: dto.type,
-            note: dto.note,
-        });
-        return await created.save();
+    async update(username: string, dto: UpdateHistoryDto): Promise<any> {
+        return await this.historyModel
+            .updateOne(
+                { _id: dto._id },
+                {
+                    isActive: dto.isActive,
+                    completed: dto.completed,
+                },
+                {},
+            )
+            .exec();
     }
 }
