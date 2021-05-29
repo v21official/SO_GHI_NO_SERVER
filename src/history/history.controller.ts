@@ -13,7 +13,6 @@ export class HistoryController {
 
     @Post('getList')
     async getList(@Request() req, @Body() dto: GetListHistoryDto) {
-        console.log('user', req.user);
         return await this.historyService.getList(req.user.username, dto);
     }
 

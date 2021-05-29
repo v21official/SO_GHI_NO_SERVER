@@ -32,7 +32,7 @@ export class HistoryService {
             username,
             isActive: true,
         };
-        const data = await this.historyModel.find(filters).exec();
+        const data = await this.historyModel.find(filters).sort({ completed: 1, money: -1 }).exec();
         return data;
     }
 

@@ -33,12 +33,12 @@ export class UserController {
         return req.user;
     }
 
-    // @Post('changePassword')
-    // async changePassword(@Request() req, @Body() changePasswordDto: ChangePasswordDto) {
-    //   // try {
-    //   return await this.usersService.changePassword(req.user, changePasswordDto);
-    //   // } catch (error) {
-    //   //     throw new BadRequestException(error.message || error.toString());
-    //   // }
-    // }
+    @Post('changePassword')
+    async changePassword(@Request() req, @Body() changePasswordDto: ChangePasswordDto) {
+      // try {
+      return await this.userService.changePassword(req.user, changePasswordDto);
+      // } catch (error) {
+      //     throw new BadRequestException(error.message || error.toString());
+      // }
+    }
 }
